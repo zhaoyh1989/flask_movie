@@ -1,0 +1,39 @@
+{%extends "common/layout.html"%}
+{%block css%}
+<link rel="stylesheet" href="{{buildStaticUrl('/css/layout.css')}}">
+{%endblock%}
+{%block content%}
+<div class="row justify-content-center" style="transform: translateY(90%);">
+    <div class="col-lg-4 col-lg-offset-5">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center"><strong>会员登录</strong></div>
+            <div class="panel-body">
+                <div class="form-horizontal login_wrap">
+                    <div class="form-group">
+                        <label for="login_name" class="col-sm-3 control-label">用户名</label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="login_name" name="login_name" placeholder="请输入用户名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login_pwd" class="col-sm-3 control-label">密码</label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" id="login_pwd" name="login_pwd" placeholder="请输入密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-6">
+                            <button type="submit" class="btn btn-success btn-block do-login">登录</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+{%block js%}
+<script src="{{buildStaticUrl('/js/member/login.js')}}"></script>
+{%endblock%}
+

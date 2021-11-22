@@ -1,0 +1,31 @@
+{%extends "common/layout.html"%}
+
+{%block css%}
+<link rel="stylesheet" href="{{buildStaticUrl('/css/index.css')}}">
+{%endblock%}
+
+{%block content%}
+<div class="row">
+    {% if data %}
+    {% for item in data %}
+    <div class="col-md-2">
+        <a href="{{'%s?id=%s&pid=%s&yg=%s' | format(buildUrl('/info'),item.id, page_data.cur_page, page_data.total_count)}}" class="thumbnail"
+           style="text-align: center" title="{{item.name | safe}} {{item.pub_date | safe}}">
+            <img style="width: 100%; height: 240px" src="{{item.cover_pic | safe}}" alt="...">
+            <!--      <div class="caption">-->
+            <h4 title="{{item.name | safe}}" style="margin-top: 4px; overflow: hidden;text-overflow: ellipsis;display:
+            -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">{{item.name | safe}}</h4>
+            <p title="{{item.pub_date | safe}}" style="font-size: 13px; margin-bottom: 2px; overflow: hidden;text-overflow: ellipsis;display:
+            -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+                {{item.pub_date | safe}}</p>
+            <!--      </div>-->
+        </a>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p style="margin: 20% auto 50%; text-align: center;"><b>系统繁忙，请稍后再试~~~</b></p>
+    {% endif %}
+</div>
+{% include "common/pagenation.html" %}
+{%endblock%}
+

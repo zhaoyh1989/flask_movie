@@ -1,0 +1,49 @@
+{% extends "common/layout.html" %}
+
+{% block content %}
+
+<div class="row" style="margin-bottom: 50px">
+    <div class="page-header">
+        <h1>{{movie_info.name | safe}}<a class="pull-right" href="{{'%s%s' | format(buildUrl('/?p='), pid)}}"
+                                         style="font-size: 18px">返回</a></h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <img class="img-thumbnail" src="{{movie_info.cover_pic | safe}}"
+                 alt="...">
+        </div>
+        <div class="col-lg-7">
+            <div class="row">
+                <div>
+                    <!-- Default panel contents -->
+                    <div class="panel-body">
+                        <p><b>更新：</b>{{movie_info.updated_time.strftime("%Y-%m-%d") | safe}}</p>
+                        <p><b>类型：</b>{{movie_info.classify[6:] | safe}}</p>
+                        <p><b>主演：</b>{{movie_info.actor[8:] | safe}}</p>
+                        <p><b>剧情介绍：</b>{{movie_info.desc[8:] | safe}}</p>
+                        <p><b>下载地址：</b><a href="{{movie_info.magnet_url | safe}}">下载 {{movie_info.name | safe}}</a></p>
+                        <p><b>原始地址：</b><a href="{{movie_info.url | safe}}">{{movie_info.url | safe}}</a></p>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="panel-heading"><h5>随机推荐：</h5></div>
+                    {% for item in rand_movie %}
+                    <a href="{{'%s?id=%s&pid=%s&yg=%s' | format(buildUrl('/info'),item.id, pid, yg)}}">
+                        <div class="col-lg-3 col-md-2">
+                            <div>
+                                <img style="width: 100%; height: 230px"
+                                     src="{{item.cover_pic}}">
+                                <div class="caption center-block" style="text-align: center; margin-top: 10px">
+                                    {{item.name}}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+
